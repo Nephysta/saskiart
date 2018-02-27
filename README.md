@@ -1,24 +1,21 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Prerequisite
 
-Things you may want to cover:
+Install Docker: https://docs.docker.com/install/
 
-* Ruby version
+Install Compose: https://docs.docker.com/compose/install/
 
-* System dependencies
+## Get started
 
-* Configuration
+Clone the repository: `git clone git@github.com:eraleis/saskiart.git`
 
-* Database creation
+Go to the project folder: `cd saskiart`
 
-* Database initialization
+Install the dependencies: `bundle install`
 
-* How to run the test suite
+## Run in development
 
-* Services (job queues, cache servers, search engines, etc.)
+Start Postgresql and Redis with: `docker-compose up`
 
-* Deployment instructions
-
-* ...
+Run the server with: `bin/rails s`
