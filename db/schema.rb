@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180228153452) do
+ActiveRecord::Schema.define(version: 20180228165134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "idea_pictures", force: :cascade do |t|
+    t.bigint "idea_id"
+    t.bigint "picture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["idea_id"], name: "index_idea_pictures_on_idea_id"
+    t.index ["picture_id"], name: "index_idea_pictures_on_picture_id"
+  end
 
   create_table "ideas", force: :cascade do |t|
     t.string "category", null: false
@@ -26,4 +35,6 @@ ActiveRecord::Schema.define(version: 20180228153452) do
     t.string "data", null: false
   end
 
+  add_foreign_key "idea_pictures", "ideas"
+  add_foreign_key "idea_pictures", "pictures"
 end
