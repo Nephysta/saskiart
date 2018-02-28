@@ -19,3 +19,7 @@ Install the dependencies: `bundle install`
 Start Postgresql and Redis with: `docker-compose up`
 
 Run the server with: `bin/rails s`
+
+## Tests
+
+Run `bundle exec rspec`
