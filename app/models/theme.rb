@@ -1,7 +1,6 @@
 class Theme
-  def initialize
-    info = ThemeService.compose
-    @ideas = info[:ideas]
+  def initialize(ideas: nil)
+    @ideas = ideas || ThemeService.compose
   end
 
   def attach_picture(picture)
@@ -9,5 +8,9 @@ class Theme
       idea.pictures << picture
       idea.save
     end
+  end
+
+  def text
+    "#{@ideas.map(&:text).join(' ')}.".capitalize
   end
 end
