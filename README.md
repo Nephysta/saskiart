@@ -1,4 +1,5 @@
-# README
+# Saskiart
+[![CircleCI](https://circleci.com/gh/eraleis/saskiart.svg?style=svg&circle-token=c3979111f74408fa7be89b605f797f67553dc872)](https://circleci.com/gh/eraleis/saskiart)
 
 ## Prerequisite
 
