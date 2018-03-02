@@ -8,10 +8,7 @@ RSpec.describe ThemeService, type: :service do
     let!(:idea_action) { Idea.create(category: 'action', text: 'eating ice-cream') }
 
     it 'return an hash with the correct keys and values' do
-      expect(subject.compose).to match(
-        ideas: [idea_object, idea_action],
-        text: 'A panda eating ice-cream.'
-      )
+      expect(subject.compose).to eq([idea_object, idea_action])
     end
   end
 end
