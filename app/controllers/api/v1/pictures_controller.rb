@@ -1,7 +1,6 @@
 module Api
   module V1
     class PicturesController < ApplicationController
-
       def index
         render json: base_scope.merge(ideas_filter).merge(limit_filter)
       end
@@ -13,7 +12,7 @@ module Api
       end
 
       def limit_filter
-        return base_scope.limit(4) unless params[:limit].present?
+        return base_scope.limit(4) unless params[:limit].present? && params[:limit].to_i < 4
         Picture.limit(params[:limit])
       end
 
