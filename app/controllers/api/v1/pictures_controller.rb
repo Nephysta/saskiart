@@ -8,7 +8,7 @@ module Api
       private
 
       def base_scope
-        Picture.all
+        Picture.order('created_at DESC')
       end
 
       def limit_filter

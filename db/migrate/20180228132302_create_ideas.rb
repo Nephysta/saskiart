@@ -6,7 +6,7 @@ class CreateIdeas < ActiveRecord::Migration[5.1]
       t.string :kind
       t.string :gender
 
-      t.timestamp
+      t.timestamps
     end
   end
 end

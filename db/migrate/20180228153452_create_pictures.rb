@@ -3,7 +3,7 @@ class CreatePictures < ActiveRecord::Migration[5.1]
     create_table :pictures do |t|
       t.string :data, null: false
 
-      t.timestamp
+      t.timestamps
     end
   end
 end

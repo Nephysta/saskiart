@@ -29,10 +29,14 @@ ActiveRecord::Schema.define(version: 20180228165134) do
     t.string "text", null: false
     t.string "kind"
     t.string "gender"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "pictures", force: :cascade do |t|
     t.string "data", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "idea_pictures", "ideas"
