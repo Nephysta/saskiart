@@ -7,9 +7,6 @@ RSpec.describe Api::V1::PicturesController, type: :controller do
         pictures = create_list(:picture, 3)
         get :index
         expect(JSON.parse(response.body).count).to eq(3)
-        pictures.map { |p| p.attributes.stringify_keys }.each do |picture|
-          expect(JSON.parse(response.body)).to include(picture)
-        end
 
         create_list(:picture, 2)
         get :index
@@ -42,7 +39,7 @@ RSpec.describe Api::V1::PicturesController, type: :controller do
         expect(JSON.parse(response.body).count).to eq(1)
       end
 
-      it "doesn't the corresponding picture when the idea doesn't match" do
+      it "doesn't return any pictures when the idea doesn't match" do
         picture = create(:picture)
         ideas = create_list(:idea, 2)
         theme = Theme.new(ideas: ideas)
