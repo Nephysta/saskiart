@@ -18,7 +18,7 @@ module Api
 
       def ideas_filter
         return base_scope unless params[:ideas].present?
-        Picture.with_ideas(JSON.parse(params[:ideas]))
+        Picture.with_ideas(params[:ideas])
       end
     end
   end

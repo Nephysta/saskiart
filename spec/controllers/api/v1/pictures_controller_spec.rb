@@ -30,5 +30,27 @@ RSpec.describe Api::V1::PicturesController, type: :controller do
         expect(JSON.parse(response.body).count).to eq(4)
       end
     end
+
+    context 'when there is an idea filter' do
+      it 'return the corresponding picture when the idea match' do
+        picture = create(:picture)
+        ideas = create_list(:idea, 2)
+        theme = Theme.new(ideas: ideas)
+        theme.attach_picture(picture)
+
+        get :index, params: { ideas: [ideas.first.id] }
+        expect(JSON.parse(response.body).count).to eq(1)
+      end
+
+      it "doesn't the corresponding picture when the idea doesn't match" do
+        picture = create(:picture)
+        ideas = create_list(:idea, 2)
+        theme = Theme.new(ideas: ideas)
+        theme.attach_picture(picture)
+
+        get :index, params: { ideas: 42 }
+        expect(JSON.parse(response.body).count).to eq(0)
+      end
+    end
   end
 end
