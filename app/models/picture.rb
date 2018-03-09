@@ -7,4 +7,8 @@ class Picture < ApplicationRecord
   def self.with_ideas(ids)
     joins(:idea_pictures).where(idea_pictures: { idea_id: ids })
   end
+
+  def theme
+    Theme.new(picture: self)
+  end
 end
