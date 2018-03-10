@@ -2,10 +2,14 @@ module Api
   module V1
     class PicturesController < ApplicationController
       def index
-        render json: base_scope.merge(ideas_filter).merge(limit_filter)
+        render json: payload, each_serializer: PicturesSerializer
       end
 
       private
+
+      def payload
+        base_scope.merge(ideas_filter).merge(limit_filter)
+      end
 
       def base_scope
         Picture.order('created_at DESC')

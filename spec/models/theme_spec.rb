@@ -14,6 +14,13 @@ RSpec.describe Theme, type: :service do
       expect(theme.instance_variable_get(:@ideas)).to include(idea_action)
       expect(theme.instance_variable_get(:@ideas)).to include(second_idea_action)
     end
+
+    it 'works with a picture' do
+      Theme.new(ideas: [idea_object, idea_action]).attach_picture(picture)
+      theme = Theme.new(picture: picture)
+      expect(theme.instance_variable_get(:@ideas)).to include(idea_action)
+      expect(theme.instance_variable_get(:@ideas)).to include(idea_object)
+    end
   end
 
   describe '#text' do
