@@ -50,4 +50,31 @@ RSpec.describe Api::V1::PicturesController, type: :controller do
       end
     end
   end
+
+  describe 'create' do
+    context 'when the correct parameters are provided' do
+      it 'create a picture and link it to ideas' do
+        ideas = create_list(:idea, 2)
+        ideas_ids = ideas.map { |idea| idea.id }
+        theme = Theme.new(ideas: ideas)
+
+        expect {
+          post :create, params: { image: 'data:image/png;base64,toto', ideas: ideas_ids.to_json }
+        }.to change { Picture.count }.by(1)
+
+        expect(JSON.parse(response.body)['theme']).to eq(theme.text)
+      end
+    end
+
+    context 'when the picture received is not a base64 encoded string' do
+      it 'raise an error' do
+        ideas = create_list(:idea, 2)
+        ideas_ids = ideas.map { |idea| idea.id }
+
+        expect {
+          post :create, params: { image: 'data:image/png;base64,toto€', ideas: ideas_ids.to_json }
+        }.to raise_error(ActiveRecord::RecordInvalid)
+      end
+    end
+  end
 end

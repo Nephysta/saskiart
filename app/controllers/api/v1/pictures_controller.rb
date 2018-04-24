@@ -5,6 +5,18 @@ module Api
         render json: payload, each_serializer: PicturesSerializer
       end
 
+      def create
+        ideas = Idea.where(id: JSON.parse(params[:ideas]))
+
+        if ideas.count > 0
+          picture = Picture.create(data: params[:image])
+          theme = Theme.new(ideas: ideas)
+          theme.attach_picture(picture)
+        end
+
+        render json: picture, serializer: PicturesSerializer
+      end
+
       private
 
       def payload

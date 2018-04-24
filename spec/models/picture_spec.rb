@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Picture, type: :model do
   it 'is valid with valid attributes' do
     expect(
-      Picture.new(data: 'image de chaton mignon')
+      Picture.new(data: 'data:image/png;base64,imagedechatonmignon')
     ).to be_valid
   end
 

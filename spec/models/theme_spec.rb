@@ -5,7 +5,7 @@ RSpec.describe Theme, type: :service do
 
   let!(:idea_object) { Idea.create(category: 'object', text: 'a panda') }
   let!(:idea_action) { Idea.create(category: 'action', text: 'eating ice-cream') }
-  let!(:picture) { Picture.create(data: 'mypic') }
+  let!(:picture) { create(:picture) }
 
   describe '#initialize' do
     it 'works with ideas that has the same category' do
